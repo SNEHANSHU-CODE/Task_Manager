@@ -19,18 +19,20 @@ function Task() {
     setdueDate(dueDate);
   };
 
+
+  /*change "https://task-manager-server-eolm.onrender.com/task/addtask/" to
+   "http://localhost:8080/task/addtask/" to run in localhost*/
   const handleAddTask = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/task/addtask/", {
+      const response = await axios.post("https://task-manager-server-eolm.onrender.com/task/addtask/", {
         title: title,
         description: description,
         dueDate: dueDate,
         createdBy: id,
       });
 
-      // Assuming the response contains a 'data' property with the added task details
       const addedTask = response.data;
 
       // Clear the input fields after the task is successfully added
@@ -38,7 +40,6 @@ function Task() {
       setDescription("");
       setdueDate("");
 
-      // You can also do something with the added task, if needed
       console.log("Task added:", addedTask);
     } catch (error) {
       console.error("Error adding task:", error);
@@ -47,11 +48,13 @@ function Task() {
 
   const [show, setShow] = useState([]);
 
+  /*change "https://task-manager-server-eolm.onrender.com/task/deletetask/" to
+   "http://localhost:8080/task/deletetask/" to run in localhost*/
   const handleDelete = async (id) => {
     console.log(id);
     console.log("delete icon clicked");
     await axios
-      .delete("http://localhost:8080/task/deletetask/", { data: { id: id } })
+      .delete("https://task-manager-server-eolm.onrender.com/task/deletetask/", { data: { id: id } })
       .then((res) => {
         console.log(res);
       })
@@ -65,19 +68,19 @@ function Task() {
     return str.slice(1, 11);
   }
 
+  /*change "https://task-manager-server-eolm.onrender.com/task/getalltask" to
+   "http://localhost:8080/task/getalltask" to run in localhost*/
   useEffect(() => {
     try {
       // Use async/await to make the Axios GET request
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:8080/task/getalltask",
+            "https://task-manager-server-eolm.onrender.com/task/getalltask",
             {
               params: { authId: id },
             }
           );
-
-          // Assuming the response contains a 'data' property with the data you want
           const data = response.data;
 
           // Update the state with the fetched data

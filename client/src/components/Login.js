@@ -22,10 +22,12 @@ function Login() {
     setLoginDetails({ ...loginDetails, password: password });
   };
 
+  /*change "https://task-manager-server-eolm.onrender.com/auth/login" to
+   "http://localhost:8080/auth/login" to run in localhost*/
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await await axios
-      .post("http://localhost:8080/auth/login", loginDetails)
+      .post("https://task-manager-server-eolm.onrender.com/auth/login", loginDetails)
       .catch((err) => {
         console.log(err);
         navigate("/");

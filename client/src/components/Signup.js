@@ -19,10 +19,13 @@ function Signup() {
   const setPassword = (password) => {
     setSignupDetails({ ...signupDetails, password: password });
   };
+
+  /*change "https://task-manager-server-eolm.onrender.com/auth/signup" to
+   "http://localhost:8080/auth/signup" to run in localhost*/
   const handleSignup = async (e) => {
     e.preventDefault();
     const response = await axios
-      .post("http://localhost:8080/auth/signup", signupDetails)
+      .post("https://task-manager-server-eolm.onrender.com/auth/signup", signupDetails)
       .then(() => {
         navigate("/");
       })
